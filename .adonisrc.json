@@ -1,19 +1,26 @@
 {
   "typescript": true,
   "commands": [
-    "./commands",
+    "./infrastructure/commands",
     "@adonisjs/core/build/commands/index.js",
     "@adonisjs/lucid/build/commands"
   ],
   "exceptionHandlerNamespace": "App/Exceptions/Handler",
   "aliases": {
     "App": "app",
-    "Config": "config",
-    "Database": "database",
-    "Contracts": "contracts"
+    "Config": "infrastructure/config",
+    "Database": "infrastructure/database",
+    "Contracts": "infrastructure/contracts"
   },
-  "preloads": ["./start/routes", "./start/kernel"],
-  "providers": ["./providers/AppProvider", "@adonisjs/core", "@adonisjs/lucid"],
+  "preloads": [
+    "./infrastructure/start/routes",
+    "./infrastructure/start/kernel"
+  ],
+  "providers": [
+    "./infrastructure/providers/AppProvider",
+    "@adonisjs/core",
+    "@adonisjs/lucid"
+  ],
   "metaFiles": [
     {
       "pattern": "public/**",
@@ -24,10 +31,37 @@
     "suites": [
       {
         "name": "functional",
-        "files": ["tests/functional/**/*.spec(.ts|.js)"],
+        "files": [
+          "tests/functional/**/*.spec(.ts|.js)"
+        ],
         "timeout": 60000
       }
     ]
   },
-  "testProviders": ["@japa/preset-adonis/TestsProvider"]
+  "testProviders": [
+    "@japa/preset-adonis/TestsProvider"
+  ],
+  "directories": {
+    "config": "infrastructure/config",
+    "public": "public",
+    "contracts": "infrastructure/contracts",
+    "providers": "infrastructure/providers",
+    "database": "infrastructure/database",
+    "migrations": "infrastructure/database/migrations",
+    "seeds": "infrastructure/database/seeders",
+    "resources": "resources",
+    "views": "resources/views",
+    "start": "infrastructure/start",
+    "tmp": "tmp",
+    "tests": "tests"
+  },
+  "namespaces": {
+    "models": "Database/Models",
+    "middleware": "App/Middleware",
+    "exceptions": "App/Exceptions",
+    "validators": "App/Validators",
+    "httpControllers": "App/Controllers/Http",
+    "eventListeners": "App/Listeners",
+    "redisListeners": "App/Listeners"
+  }
 }

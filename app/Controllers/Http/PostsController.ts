@@ -1,5 +1,5 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
-import Post from 'App/Models/Post';
+import Post from 'infrastructure/database/Models/Post';
 
 export default class PostsController {
   public async index({ params, response }: HttpContextContract) {

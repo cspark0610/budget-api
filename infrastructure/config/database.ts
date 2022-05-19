@@ -22,12 +22,12 @@ const databaseConfig: DatabaseConfig = {
       },
       migrations: {
         naturalSort: true,
-        paths: ['./database/migrations'],
+        paths: ['./infrastructure/database/migrations'],
         disableTransactions: true,
         tableName: 'migrations_log',
       },
       seeders: {
-        paths: ['./database/seeds'],
+        paths: ['./infrastructure/database/seeds'],
       },
       healthCheck: false,
       debug: true,
