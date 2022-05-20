@@ -41,6 +41,7 @@
   "testProviders": [
     "@japa/preset-adonis/TestsProvider"
   ],
+  "aceProviders": [],
   "directories": {
     "config": "infrastructure/config",
     "public": "public",
