@@ -1,0 +1,36 @@
+version: '3.9'
+
+services:
+  budget-pg:
+    container_name: budget_pg
+    image: postgres:14.2-alpine
+    restart: unless-stopped
+    env_file:
+      - .env
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    ports:
+      - '5440:5432'
+    networks:
+      - default
+
+  budget-api:
+    container_name: budget_api
+    depends_on:
+      - budget-pg
+    image: budget/api:v${VERSION}
+    restart: unless-stopped
+    build:
+      context: .
+      target: dependencies
+    command: dumb-init node ace serve --watch
+    env_file:
+      - .env
+    ports:
+      - '4000:3000'
+    networks:
+      - default
+
+networks:
+  default:
+    name: budget-net
