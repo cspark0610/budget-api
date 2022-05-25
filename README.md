@@ -2,8 +2,8 @@
 
 ## Requirements
 
-- yarn >= 1.22.*
-- node >= 16.*
+- yarn >= 1.22.\*
+- node >= 16.\*
 - eslint plugin | extension
 - prettier plugin | extension
 
@@ -21,6 +21,7 @@ Add environment variables file `.env`, use the `.env.example` guide
 ## Running the application
 
 Check the package.json file to see the other commands
+
 ```shell
 # development mode
 yarn dev
@@ -32,15 +33,18 @@ yarn build
 yarn test
 ```
 
-## Frequent commands: 
+## Frequent commands:
+
 `node ace ...`
 
 ### List
+
 ```shell
 $ list:routes         // List application routes.
 ```
 
 ### Make
+
 ```shell
 $ make:model          // Make a new model with lucid.
 $ make:controller     // Make a new HTTP controller.
@@ -51,6 +55,7 @@ $ make:validator      // Make a new validator.
 ```
 
 ### Migrations
+
 ```shell
 $ migration:run       // Run all pending migrations.
 $ migration:rollback  // Rollback last set of migrations.
