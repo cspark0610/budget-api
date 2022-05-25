@@ -31,16 +31,12 @@
     "suites": [
       {
         "name": "functional",
-        "files": [
-          "tests/functional/**/*.spec(.ts|.js)"
-        ],
+        "files": ["tests/functional/**/*.spec(.ts|.js)"],
         "timeout": 60000
       }
     ]
   },
-  "testProviders": [
-    "@japa/preset-adonis/TestsProvider"
-  ],
+  "testProviders": ["@japa/preset-adonis/TestsProvider"],
   "aceProviders": [],
   "directories": {
     "config": "infrastructure/config",

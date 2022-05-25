@@ -13,7 +13,7 @@ RUN mkdir tmp
 
 FROM base AS dependencies
 
-COPY --chown=node:node ./package.json ./yarn.lock
+COPY --chown=node:node package.json yarn.lock ./
 
 RUN yarn install --non-interactive
 
@@ -27,7 +27,7 @@ RUN node ace build --production
 
 FROM base AS production
 
-COPY --chown=node:node ./package.json ./yarn.lock
+COPY --chown=node:node package.json yarn.lock ./
 
 RUN yarn install --production
 

@@ -6,9 +6,9 @@
     "dev": "node ace serve --watch",
     "build": "node ace build --production",
     "start": "node server.js",
-    "lint": "eslint . --ext=.ts",
     "format": "prettier --write .",
-    "test": "node ace test"
+    "test": "node ace test",
+    "lint": "eslint \"{app,domain,infrastructure,test}/**/*.ts\""
   },
   "eslintConfig": {
     "parser": "@typescript-eslint/parser",
@@ -31,7 +31,8 @@
   },
   "eslintIgnore": [
     "node_modules",
-    "build"
+    "build",
+    ".github"
   ],
   "prettier": {
     "semi": true,
@@ -46,13 +47,13 @@
     "quoteProps": "consistent"
   },
   "devDependencies": {
-    "@adonisjs/assembler": "^5.6.2",
+    "@adonisjs/assembler": "^5.7.0",
     "@japa/preset-adonis": "^1.0.16",
     "@japa/runner": "^2.0.8",
     "@types/morgan": "^1.9.3",
     "@types/proxy-addr": "^2.0.0",
     "@types/source-map-support": "^0.5.4",
-    "@typescript-eslint/parser": "^5.25.0",
+    "@typescript-eslint/parser": "^5.26.0",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
@@ -67,7 +68,7 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.8.2",
-    "@adonisjs/lucid": "^17.2.0",
+    "@adonisjs/lucid": "^18.0.0",
     "colorette": "^2.0.16",
     "luxon": "^2.4.0",
     "morgan": "^1.10.0",

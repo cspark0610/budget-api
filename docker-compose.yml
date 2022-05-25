@@ -6,11 +6,11 @@ services:
     image: postgres:14.2-alpine
     restart: unless-stopped
     env_file:
-      - .env
+      - api.env
     volumes:
       - ./data:/var/lib/postgresql/data
     ports:
-      - '5440:5432'
+      - '5441:5432'
     networks:
       - default
 
@@ -20,14 +20,11 @@ services:
       - budget-pg
     image: budget/api:v${VERSION}
     restart: unless-stopped
-    build:
-      context: .
-      target: dependencies
-    command: dumb-init node ace serve --watch
+    command: yarn dev
     env_file:
-      - .env
+      - api.env
     ports:
-      - '4000:3000'
+      - '3000:3000'
     networks:
       - default
 

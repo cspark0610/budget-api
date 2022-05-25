@@ -5,7 +5,7 @@ version: '3'
 output: prefixed
 
 vars:
-  VERSION: $(awk '/version/{gsub(/("|",)/,"",$2);print $2};' package.json)
+  VERSION: $(awk '/version/{gsub(/("|",)/,"",$2);print $2};' source/package.json)
 
 tasks:
   run:
@@ -14,8 +14,13 @@ tasks:
       - VERSION={{.VERSION}} docker-compose up -d
 
   build:
+    deps: [pull]
     cmds:
-      - docker build -t budget/api:v{{.VERSION}} .
+      - docker build -t budget/api:v{{.VERSION}} --target dependencies ./source
+
+  pull:
+    cmds:
+      - cd source && git pull origin dev && cd ../
 
   logs:
     cmds:
