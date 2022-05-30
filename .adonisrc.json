@@ -56,7 +56,7 @@
     "tests": "tests"
   },
   "namespaces": {
-    "models": "Database/Models",
+    "models": "Database/models",
     "middleware": "App/Middleware",
     "exceptions": "App/Exceptions",
     "validators": "App/Validators",
