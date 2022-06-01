@@ -53,7 +53,7 @@
     "@types/morgan": "^1.9.3",
     "@types/proxy-addr": "^2.0.0",
     "@types/source-map-support": "^0.5.4",
-    "@typescript-eslint/parser": "^5.26.0",
+    "@typescript-eslint/parser": "^5.27.0",
     "adonis-preset-ts": "^2.1.0",
     "eslint": "^8.16.0",
     "eslint-config-prettier": "^8.5.0",
@@ -67,7 +67,7 @@
     "youch-terminal": "^2.1.4"
   },
   "dependencies": {
-    "@adonisjs/core": "^5.8.2",
+    "@adonisjs/core": "^5.8.3",
     "@adonisjs/lucid": "^18.0.0",
     "colorette": "^2.0.16",
     "luxon": "^2.4.0",
