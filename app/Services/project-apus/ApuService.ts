@@ -1,13 +1,15 @@
-import ApuRepositoryInterface from '../../../domain/project-apus/interface/ApuInterface';
-import { inject } from '@adonisjs/fold';
+import IProjectApuRepository from '../../../domain/project-apus/interface/ProjectApuInterface';
+import ApuRepositoryAdapter from '../../../infrastructure/repository/project-apus/ProjectApuRepository';
+//import ApuRepositoryAdapter from '@ioc:MyBudget/ApuRepositoryAdapter';
 
-@inject()
 export default class ApuService {
-  constructor(private readonly apuRepository: ApuRepositoryInterface) {}
+  public projectApuRepository: IProjectApuRepository =
+    new ApuRepositoryAdapter();
 
   public async create(apu: any) {
     //const input = request.only(['title', 'textBody', 'published']);
-    const post = await this.apuRepository.create(apu);
+    const post = await this.projectApuRepository.create(apu);
+
     return post;
   }
 }

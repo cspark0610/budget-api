@@ -19,12 +19,13 @@
 */
 
 import Route from '@ioc:Adonis/Core/Route';
-//import ApuController from 'app/Controllers/Http/project-apus/ApuController';
+import ApuController from '../../app/Controllers/Http/project-apus/ApuController';
 
 Route.get('/', async () => {
   return 'Hello world from a slim app';
 });
 
+//Project-Apus
 Route.group(() => {
   Route.group(() => {
     Route.get('/', 'PostsController.getAll');
@@ -32,8 +33,7 @@ Route.group(() => {
       'id',
       Route.matchers.number()
     );
-    // Route.post('/', (ctx) => new ApuController().create(ctx));
-    //Route.post('/', 'ApuController.create');
+    Route.post('/', (ctx) => new ApuController().create(ctx));
     Route.patch('/:id', 'PostsController.update').where(
       'id',
       Route.matchers.number()
@@ -42,5 +42,5 @@ Route.group(() => {
       'id',
       Route.matchers.number()
     );
-  }).prefix('/posts');
+  }).prefix('/project-apu');
 }).prefix('/api/v1');

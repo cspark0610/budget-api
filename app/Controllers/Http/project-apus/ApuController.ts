@@ -1,10 +1,13 @@
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import ApuService from '../../../Services/project-apus/ApuService';
-import { inject } from '@adonisjs/fold';
+//import ApuService from '@ioc:MyBudget/ApuService';
 
-@inject()
 export default class ApuController {
-  constructor(protected apuService: ApuService) {}
+  public apuService: ApuService;
+  constructor() {
+    this.apuService = new ApuService();
+  }
+
   public async create({ request, response }: HttpContextContract) {
     const input = request.only([
       'code',

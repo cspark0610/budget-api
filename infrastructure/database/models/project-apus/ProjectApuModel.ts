@@ -1,6 +1,6 @@
 import { DateTime } from 'luxon';
-import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm';
-import ProjectApuEquipment from './ProjectApuEquipment';
+import { BaseModel, column, hasMany, HasMany } from '@ioc:Adonis/Lucid/Orm';
+import ProjectApuEquipment from './ProjectApuEquipmentModel';
 
 export default class ProjectApu extends BaseModel {
   @column({ isPrimary: true })

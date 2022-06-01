@@ -43,10 +43,4 @@ export default class ProjectApuEntity {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime;
-
-  /* ======= RELATIONS ======= */
-
-  // eslint-disable-next-line @typescript-eslint/explicit-member-accessibility
-  /*@hasMany(() => ProjectApuEquipment)
-  project_apus_equipments: HasMany<typeof ProjectApuEquipment>;*/
 }

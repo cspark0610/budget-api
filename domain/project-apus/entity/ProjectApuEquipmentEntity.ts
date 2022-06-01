@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
-import { BaseModel, column } from '@ioc:Adonis/Lucid/Orm';
+import { column } from '@ioc:Adonis/Lucid/Orm';
 
-export default class ProjectApuEquipment extends BaseModel {
+export default class ProjectApuEquipment {
   @column({ isPrimary: true })
   public id: number;
 

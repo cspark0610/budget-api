@@ -66,6 +66,7 @@
   },
   "dependencies": {
     "@adonisjs/core": "^5.8.2",
+    "@adonisjs/fold": "^8.2.0",
     "@adonisjs/lucid": "^17.2.0",
     "luxon": "^2.4.0",
     "pg": "^8.7.3",

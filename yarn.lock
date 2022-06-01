@@ -139,6 +139,13 @@
   dependencies:
     "@poppinss/utils" "^4.0.4"
 
+"@adonisjs/fold@^8.2.0":
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/@adonisjs/fold/-/fold-8.2.0.tgz#91c8368b49b5fc725e54042d702f0e57602c2562"
+  integrity sha512-Uoo2HPp4SShIkGOF3+p3gT09W3j0zpkK+fOpPyYPTqYm7CWAunklTlowqX45b6CAVb5DCcORDUB8ia4D1ijeKg==
+  dependencies:
+    "@poppinss/utils" "^4.0.4"
+
 "@adonisjs/hash@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@adonisjs/hash/-/hash-7.1.1.tgz#c23ebd791e6cd5f7be901ffbef5075f8d70fc7c6"
