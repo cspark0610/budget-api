@@ -1,65 +1,58 @@
-# Budget Smartcore API
+# BudgetAPIv2
+
+# Typescript Clean Architecture
+
+It is my attempt to create Clean Architecture based application in Typescript.
 
 ## Requirements
 
-- yarn >= 1.22.\*
-- node >= 16.\*
-- eslint plugin | extension
-- prettier plugin | extension
+- yarn
+- @nest/cli `npm i -g @nestjs/cli`
 
 ## Installation
 
-Install dependencies
+1. Install dependencies
 
-```shell
-$ yarn install
+```bash
+yarn
 ```
 
-Enable a development database **Postgres**
-Add environment variables file `.env`, use the `.env.example` guide
+2. Enable a development database **Postgres**
+3. Create the environment variables file (.env.development) and complete
 
-## Running the application
+## Running the app
 
-Check the package.json file to see the other commands
-
-```shell
-# development mode
+```bash
+# development
 yarn dev
 
 # production mode
 yarn build
+```
 
-# testing mode
+## Test
+
+```bash
+# unit tests
 yarn test
 ```
 
-## Frequent commands:
 
-`node ace ...`
+## TypeORM
 
-### List
+Create new migration
 
-```shell
-$ list:routes         // List application routes.
+> **NOTE:** You must have a database connection configured in the `ormconfig.json` file
+
+> **NOTE:** Run `yarn build` before running the migration
+
+```bash
+$ npx typeorm migration:generate -n entities-[name-module]
+# el nombre del modulo debe separarse por guiones
 ```
 
-### Make
+Run existing migrations
 
-```shell
-$ make:model          // Make a new model with lucid.
-$ make:controller     // Make a new HTTP controller.
-$ make:middleware     // Make a new middleware.
-$ make:migration      // Make a new migration.
-$ make:provider       // Make a new IoC container provider.
-$ make:validator      // Make a new validator.
-```
-
-### Migrations
-
-```shell
-$ migration:run       // Run all pending migrations.
-$ migration:rollback  // Rollback last set of migrations.
-$ migration:refresh   // Run migration:reset & re-run them from the start.
-$ migration:reset     // Rollback all migrations to the 0 batch.
-$ migration:status    // Get the status of all the migrations.
+```bash
+$ npx typeorm migration:run
 ```

@@ -1,27 +1,31 @@
 {
-  "extends": "./node_modules/adonis-preset-ts/tsconfig",
-  "include": ["**/*"],
+  "include": ["src/**/*"],
   "exclude": ["node_modules", "build", "dist"],
   "compilerOptions": {
     "target": "es2017",
-    "module": "commonJS",
-    "outDir": "build",
-    "rootDir": "./",
-    "sourceMap": false,
+    "module": "commonjs",
+    "strict": true,
+    "allowJs": true,
     "incremental": true,
     "skipLibCheck": true,
+    "noImplicitAny": false,
+    "removeComments": true,
     "esModuleInterop": true,
+    "strictNullChecks": false,
+    "moduleResolution": "node",
     "resolveJsonModule": true,
+    "strictBindCallApply": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "noFallthroughCasesInSwitch": false,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "outDir": "./dist",
     "paths": {
-      "App/*": ["./app/*"],
-      "Config/*": ["./infrastructure/config/*"],
-      "Database/*": ["./infrastructure/database/*"],
-      "Contracts/*": ["./infrastructure/contracts/*"]
-    },
-    "types": [
-      "@adonisjs/core",
-      "@japa/preset-adonis/build/adonis-typings",
-      "@adonisjs/lucid"
-    ]
+      "@core/*": ["src/core/*"],
+      "@infrastructure/*": ["src/infrastructure/*"],
+      "@application/*": ["src/application/*"],
+      "~/*": ["src/*"],
+    }
   }
 }

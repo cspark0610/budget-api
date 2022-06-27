@@ -40,8 +40,10 @@ docker-compose*
 .dockerignore
 
 # Files Optional
-*.md
+.md*
 test/
 .husky/
 .vscode/
+README.md
 Taskfile.yml
+package-lock.json
