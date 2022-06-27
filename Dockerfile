@@ -1,36 +1,27 @@
-FROM node:16.15-alpine3.15 AS base
+FROM node:14.17-alpine3.12 as development
 
-RUN apk --no-cache add dumb-init
+WORKDIR /usr/src/app
 
-RUN mkdir -p /home/node/app && chown node:node /home/node/app
+COPY package.json yarn.lock ./
 
-WORKDIR /home/node/app
+RUN yarn install  --non-interactive
 
-USER node
+COPY . .
 
-RUN mkdir tmp
+RUN yarn build
 
+FROM node:14.17-alpine3.12 as production
 
-FROM base AS dependencies
+ENV NODE_ENV=production
 
-COPY --chown=node:node package.json yarn.lock ./
+WORKDIR /usr/src/app
 
-RUN yarn install --non-interactive
-
-COPY --chown=node:node . .
-
-
-FROM dependencies AS build
-
-RUN node ace build --production
-
-
-FROM base AS production
-
-COPY --chown=node:node package.json yarn.lock ./
+COPY package.json yarn.lock ./
 
 RUN yarn install --production
 
-COPY --chown=node:node --from=build /home/node/app/build .
+COPY . .
 
-CMD [ "dumb-init", "node", "server.js" ]
+COPY --from=development /usr/src/app/dist ./dist
+
+CMD ["node", "dist/main"]

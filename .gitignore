@@ -3,8 +3,10 @@
 build
 dist
 node_modules
-package-lock.json
+ormconfig.json
+yarn.lock
 pnpm-lock.yaml
+package-lock.json
 
 # Logs
 logs
@@ -19,7 +21,8 @@ lerna-debug.log*
 .DS_Store
 
 # Tests
-coverage
+/coverage
+/.nyc_output
 tmp
 
 # TypeScript cache
