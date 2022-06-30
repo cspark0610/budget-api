@@ -1,4 +1,5 @@
 import { ApuProjectDto, CreateApuProjectDto } from '../dto/index';
+import { ProjectApuEntity } from '../entity/ProjectApuEntity';
 
 // eslint-disable-next-line @typescript-eslint/naming-convention
 export default interface IProjectApuRepository {
@@ -7,6 +8,8 @@ export default interface IProjectApuRepository {
     options?: RepositoryFindOptions
   ): Promise<Optional<User>>;  */
   create(apu: CreateApuProjectDto): Promise<ApuProjectDto>;
+
+  createBatch(apu: ProjectApuEntity[]): Promise<ApuProjectDto[]>;
 
   updateUser(apu: CreateApuProjectDto): Promise<CreateApuProjectDto>;
 }

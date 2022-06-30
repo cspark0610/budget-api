@@ -1,10 +1,10 @@
+// import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
+import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
+import { AreaEntity } from '@core/domain/project-area/entity/AreaEntity';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 
-import { CreateBudgetDto } from '@core/domain/budget/dto/CreateBudget.dto';
-import { CreateAreaProjectDto } from '@core/domain/project-area/dto/ProjectArea.dto';
-
-export class CreateDisciplineBProjectDto {
+export class CreateDisciplineProjectDto {
   @IsString()
   @ApiProperty({ uniqueItems: true })
   name: string;
@@ -17,7 +17,7 @@ export class CreateDisciplineBProjectDto {
   @IsOptional()
   description?: string;
 
-  areas?: CreateAreaProjectDto[];
+  areas?: AreaEntity[];
 
-  budget: CreateBudgetDto;
+  budget: BudgetEntity;
 }

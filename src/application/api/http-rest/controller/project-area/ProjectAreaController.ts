@@ -1,42 +1,20 @@
-import ProjectApuService from '@core/service/project-apu/case-use/CreateProjectApuService';
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  ParseIntPipe,
-  Patch,
-  Post,
-  Query,
-  Req,
-  Res,
-} from '@nestjs/common';
-import {
-  ApiBody,
-  ApiConsumes,
-  ApiOkResponse,
-  ApiQuery,
-  ApiTags,
-} from '@nestjs/swagger';
-// import fastify = require('fastify');
-import { kIsMultipart } from 'fastify-formidable';
+import CreateProjectAreaService from '@core/service/project-area/case-use/CreateProjectAreaService';
+import { Body, Controller, Post } from '@nestjs/common';
+import { ApiBody, ApiTags } from '@nestjs/swagger';
 
 import { CreateAreaProjectDto } from '@core/domain/project-area/dto/ProjectArea.dto';
-// import formidable = require('formidable');
 
 @ApiTags('Project - Area')
 @Controller('project/area')
 export class ProjectAreaController {
-  constructor(private readonly apuService: ProjectApuService) {}
+  constructor(private readonly projectAreaService: CreateProjectAreaService) {}
 
   @Post()
   @ApiBody({ type: CreateAreaProjectDto })
-  create(@Body() dto: CreateAreaProjectDto) {
-    const data = 'test'; // await this.apuService.create(dto);
+  async create(@Body() dto: CreateAreaProjectDto) {
+    const data = await this.projectAreaService.create(dto);
     return {
-      message: 'Apu has been successfully created',
+      message: 'Area has been successfully created',
       data,
     };
   }

@@ -1,4 +1,4 @@
-import ProjectApuService from '@core/service/project-apu/case-use/CreateProjectApuService';
+import ProjectAreaService from '@core/service/project-area/case-use/CreateProjectAreaService';
 /* ======= ENTITIES ======= */
 import {
   ProjectApu,
@@ -23,6 +23,6 @@ import { ProjectAreaController } from '../api/http-rest/controller/project-area/
     ]),
   ],
   controllers: [ProjectAreaController],
-  providers: [ProjectApuService],
+  providers: [ProjectAreaService],
 })
 export class ProjectAreaModule {}

@@ -12,7 +12,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import { Budget } from '../budget/ProjectBudget.entity';
+import { Budget } from '../budget/Budget.entity';
 import { ProjectApu } from '../project-apu/ProjectApu.entity';
 import { ProjectArea } from '../project-area/ProjectArea.entity';
 

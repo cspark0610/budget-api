@@ -1,3 +1,4 @@
+import CreateBatchProjectApuService from '@core/service/project-apu/case-use/CreateBatchProjectApuService';
 import ProjectApuService from '@core/service/project-apu/case-use/CreateProjectApuService';
 /* ======= ENTITIES ======= */
 import {
@@ -31,6 +32,6 @@ import { ProjectApuController } from '../api/http-rest/controller/project-apu/Pr
     // BudgetModule,
   ],
   controllers: [ProjectApuController],
-  providers: [ProjectApuService], // XlsxDepartureService
+  providers: [ProjectApuService, CreateBatchProjectApuService], // XlsxDepartureService
 })
 export class ProjectApuModule {}

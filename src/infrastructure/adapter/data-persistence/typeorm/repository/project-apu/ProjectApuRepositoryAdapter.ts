@@ -2,14 +2,11 @@ import {
   ApuProjectDto,
   CreateApuProjectDto,
 } from '@core/domain/project-apu/dto/index';
+import { ProjectApuEntity } from '@core/domain/project-apu/entity/ProjectApuEntity';
 import IProjectApuRepository from '@core/domain/project-apu/interface/ProjectApuInterface';
-import {
-  BadRequestException,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { ILike, In, Repository } from 'typeorm';
+import { Repository } from 'typeorm';
 
 import { ProjectApu } from '../../entity/project-apu/index';
 import { ProjectApuMapper } from '../../entity/project-apu/mapper/ProjectApuMapper';
@@ -23,10 +20,20 @@ export default class ProjectApuRepositoryAdapter
     private readonly apuRepository: Repository<ProjectApu>,
   ) {}
 
+  public async createBatch(
+    projectApu: ProjectApuEntity[],
+  ): Promise<ApuProjectDto[]> {
+    const newApu = this.apuRepository.create(projectApu);
+    const apu = await this.apuRepository.save(newApu);
+    const payload: ApuProjectDto[] = ProjectApuMapper.toOrmDomainDtos(apu);
+
+    return payload;
+  }
+
   public async create(apuDto: CreateApuProjectDto): Promise<ApuProjectDto> {
     const newApu = this.apuRepository.create(apuDto);
     const apu = await this.apuRepository.save(newApu);
-    const domainApu: ApuProjectDto = ProjectApuMapper.toDomainEntity(apu);
+    const domainApu: ApuProjectDto = ProjectApuMapper.toOrmDomainDto(apu);
 
     return domainApu;
   }

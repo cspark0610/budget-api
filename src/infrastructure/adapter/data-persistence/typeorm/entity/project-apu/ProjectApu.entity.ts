@@ -17,7 +17,7 @@ import {
   ProjectApuWorkforce,
 } from './index';
 
-import { Budget } from '../budget/ProjectBudget.entity';
+import { Budget } from '../budget/Budget.entity';
 import { Departure } from '../master/DepartureMaster.entity';
 import { ProjectArea } from '../project-area/ProjectArea.entity';
 import { ProjectDiscipline } from '../project-discipline/ProjectDiscipline.entity';

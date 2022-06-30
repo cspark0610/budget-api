@@ -3,7 +3,7 @@ import { ProjectApu } from '@infrastructure/adapter/data-persistence/typeorm/ent
 import { ApuProjectDto } from '@core/domain/project-apu/dto/ApuProject.dto';
 
 export class ProjectApuMapper {
-  public static toDomainEntity(ormProjectApu: ProjectApu): ApuProjectDto {
+  public static toOrmDomainDto(ormProjectApu: ProjectApu): ApuProjectDto {
     const apuProjectDto: ApuProjectDto = new ApuProjectDto();
     apuProjectDto.id = ormProjectApu.id;
     apuProjectDto.unitPrice = ormProjectApu.unitPrice;
@@ -17,11 +17,9 @@ export class ProjectApuMapper {
     return apuProjectDto;
   }
 
-  public static toDomainEntities(
-    ormProjectApus: ProjectApu[],
-  ): ApuProjectDto[] {
+  public static toOrmDomainDtos(ormProjectApus: ProjectApu[]): ApuProjectDto[] {
     return ormProjectApus.map((ormProjectApu) =>
-      this.toDomainEntity(ormProjectApu),
+      this.toOrmDomainDto(ormProjectApu),
     );
   }
 }
