@@ -44,13 +44,13 @@ export class entityProjectApu1655270740130 implements MigrationInterface {
       `CREATE TABLE "master_departures" ("id" SERIAL NOT NULL, "name" character varying NOT NULL, "code" character varying NOT NULL, "description" character varying(255) NOT NULL, "unit" character varying(45) NOT NULL, "created_at" TIMESTAMP NOT NULL DEFAULT now(), "updated_at" TIMESTAMP NOT NULL DEFAULT now(), CONSTRAINT "PK_0b994e433e1459b2fcba55d0941" PRIMARY KEY ("id"))`,
     );
     await queryRunner.query(
-      `CREATE TABLE "b_project_disciplines_areas" ("discipline_id" integer NOT NULL, "area_id" integer NOT NULL, CONSTRAINT "PK_64eb080145255fd604a3eca6fbd" PRIMARY KEY ("discipline_id", "area_id"))`,
+      `CREATE TABLE "project_disciplines_areas" ("discipline_id" integer NOT NULL, "area_id" integer NOT NULL, CONSTRAINT "PK_64eb080145255fd604a3eca6fbd" PRIMARY KEY ("discipline_id", "area_id"))`,
     );
     await queryRunner.query(
-      `CREATE INDEX "IDX_5027cbae3dad0706f96329a21e" ON "b_project_disciplines_areas" ("discipline_id") `,
+      `CREATE INDEX "IDX_5027cbae3dad0706f96329a21e" ON "project_disciplines_areas" ("discipline_id") `,
     );
     await queryRunner.query(
-      `CREATE INDEX "IDX_a6b45b0b6a6a6506cec57f2318" ON "b_project_disciplines_areas" ("area_id") `,
+      `CREATE INDEX "IDX_a6b45b0b6a6a6506cec57f2318" ON "project_disciplines_areas" ("area_id") `,
     );
     await queryRunner.query(
       `ALTER TABLE "project_areas" ADD CONSTRAINT "FK_468bb75f062fb3dc1037e639e26" FOREIGN KEY ("budget_id") REFERENCES "budgets"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
@@ -95,19 +95,19 @@ export class entityProjectApu1655270740130 implements MigrationInterface {
       `ALTER TABLE "project_apus" ADD CONSTRAINT "FK_4156f1c880a54f0cc1bace5fdff" FOREIGN KEY ("discipline_id") REFERENCES "project_disciplines"("id") ON DELETE NO ACTION ON UPDATE NO ACTION`,
     );
     await queryRunner.query(
-      `ALTER TABLE "b_project_disciplines_areas" ADD CONSTRAINT "FK_5027cbae3dad0706f96329a21e5" FOREIGN KEY ("discipline_id") REFERENCES "project_disciplines"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
+      `ALTER TABLE "project_disciplines_areas" ADD CONSTRAINT "FK_5027cbae3dad0706f96329a21e5" FOREIGN KEY ("discipline_id") REFERENCES "project_disciplines"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
     );
     await queryRunner.query(
-      `ALTER TABLE "b_project_disciplines_areas" ADD CONSTRAINT "FK_a6b45b0b6a6a6506cec57f2318c" FOREIGN KEY ("area_id") REFERENCES "project_areas"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
+      `ALTER TABLE "project_disciplines_areas" ADD CONSTRAINT "FK_a6b45b0b6a6a6506cec57f2318c" FOREIGN KEY ("area_id") REFERENCES "project_areas"("id") ON DELETE CASCADE ON UPDATE CASCADE`,
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.query(
-      `ALTER TABLE "b_project_disciplines_areas" DROP CONSTRAINT "FK_a6b45b0b6a6a6506cec57f2318c"`,
+      `ALTER TABLE "project_disciplines_areas" DROP CONSTRAINT "FK_a6b45b0b6a6a6506cec57f2318c"`,
     );
     await queryRunner.query(
-      `ALTER TABLE "b_project_disciplines_areas" DROP CONSTRAINT "FK_5027cbae3dad0706f96329a21e5"`,
+      `ALTER TABLE "project_disciplines_areas" DROP CONSTRAINT "FK_5027cbae3dad0706f96329a21e5"`,
     );
     await queryRunner.query(
       `ALTER TABLE "project_apus" DROP CONSTRAINT "FK_4156f1c880a54f0cc1bace5fdff"`,
@@ -157,7 +157,7 @@ export class entityProjectApu1655270740130 implements MigrationInterface {
     await queryRunner.query(
       `DROP INDEX "public"."IDX_5027cbae3dad0706f96329a21e"`,
     );
-    await queryRunner.query(`DROP TABLE "b_project_disciplines_areas"`);
+    await queryRunner.query(`DROP TABLE "project_disciplines_areas"`);
     await queryRunner.query(`DROP TABLE "master_departures"`);
     await queryRunner.query(`DROP TABLE "project_apus"`);
     await queryRunner.query(`DROP TABLE "project_apus_workforces"`);

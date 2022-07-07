@@ -42,13 +42,13 @@ export const configurations = () => ({
     migrationsTableName: 'migration_table',
     migrations: [
       join(
-        __dirname,
-        'src/infrastructure/adapter/data-persistence/typeorm/migrations/**/*{.ts,.js}', // 'src/migrations/**/*{.ts,.js}',
+        TypeOrmDirectory,
+        '../../data-persistence/typeorm/migrations/**/*{.ts,.js}',
       ),
     ],
     cli: {
       migrationsDir:
-        'src/infrastructure/adapter/data-persistence/typeorm/migrations', // 'src/migrations',
+        'src/infrastructure/adapter/data-persistence/typeorm/migrations',
     },
 
     // TypeORM
