@@ -1,4 +1,3 @@
-import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
 import { ProjectApuEntity } from '@core/domain/project-apu/entity/ProjectApuEntity';
 
 export class AreaEntity {
@@ -12,5 +11,5 @@ export class AreaEntity {
 
   apus: ProjectApuEntity[];
 
-  budget: BudgetEntity;
+  budgetId: number;
 }

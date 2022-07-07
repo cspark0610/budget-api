@@ -21,7 +21,7 @@ import fastify = require('fastify');
 import { kIsMultipart } from 'fastify-formidable';
 import formidable = require('formidable');
 
-@ApiTags('Project-Apu')
+@ApiTags('Project - Apu')
 @Controller('budget/project/apus')
 export class ProjectApuController {
   constructor(

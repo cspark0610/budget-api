@@ -7,6 +7,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { configSchema, configurations } from '../api/config';
 import { ProjectApuModule } from './ProjectApuModule';
 import { ProjectAreaModule } from './ProjectAreaModule';
+import { BudgetModule } from './BudgetModule';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -22,6 +23,7 @@ import { ProjectAreaModule } from './ProjectAreaModule';
     }),     
     ProjectApuModule, 
     ProjectAreaModule,
+    BudgetModule
   ],
   controllers: [],
   providers: [],

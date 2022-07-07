@@ -28,7 +28,7 @@ export default class ProjectAreaRepositoryAdapter
     return area;
   }
 
-  public async findByName(name: string, budget: number): Promise<AreaEntity> {
+  public async findByName(name: string, budgetId: number): Promise<AreaEntity> {
     const data = await this.projectAreaRepository.findOne({
       where: {
         name: Raw(
@@ -37,7 +37,7 @@ export default class ProjectAreaRepositoryAdapter
             name,
           },
         ),
-        budget: { id: budget },
+        budget: { id: budgetId },
       },
     });
     const area = ProjectAreaMapper.toOrmEntityDomain(data);

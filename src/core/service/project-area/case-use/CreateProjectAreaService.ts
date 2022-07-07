@@ -1,4 +1,3 @@
-import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
 import { DataImportEntity } from '@core/domain/project-apu/entity/type/DataImportEntity';
 import { AreaEntity } from '@core/domain/project-area/entity/AreaEntity';
 import ProjectAreaInterface from '@core/domain/project-area/interface/ProjectAreaInterface';
@@ -16,13 +15,13 @@ export default class CreateProjectAreaService {
 
   async creationBatchArea(
     data: DataImportEntity,
-    budget: BudgetEntity,
+    budgetId: number,
   ): Promise<AreaEntity[]> {
     const areas = await Promise.all(
       data.areas.map((el) =>
         this.create({
           ...el,
-          budget,
+          budgetId,
         }),
       ),
     );

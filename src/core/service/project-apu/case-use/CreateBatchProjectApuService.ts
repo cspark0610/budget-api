@@ -37,7 +37,7 @@ export default class CreateBatchProjectApuService {
     const budget = await this.budgetInterface.findById(budgetId);
     if (!budget) throw new BadRequestException('Budget not found');
 
-    const areas = await this.areaService.creationBatchArea(data, budget);
+    const areas = await this.areaService.creationBatchArea(data, budget.id);
 
     const disciplines = await this.disciplineService.creationBatchDiscipline(
       data,

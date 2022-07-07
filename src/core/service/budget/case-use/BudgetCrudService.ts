@@ -1,9 +1,14 @@
+import { BudgetDITokens } from '@core/domain/budget/di/BudgetDITokens';
 import BudgetInterface from '@core/domain/budget/interface/BudgetInterface';
+import { Inject } from '@nestjs/common';
 
 import { CreateBudgetDto } from '@core/domain/budget/dto/CreateBudget.dto';
 
 export default class BudgetCrudService {
-  constructor(private readonly budgetInterface: BudgetInterface) {}
+  constructor(
+    @Inject(BudgetDITokens.BudgetRepository)
+    private readonly budgetInterface: BudgetInterface,
+  ) {}
 
   public async create(dto: CreateBudgetDto): Promise<CreateBudgetDto> {
     const budget = await this.budgetInterface.create(dto);

@@ -1,4 +1,3 @@
-import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
 import { ApiProperty } from '@nestjs/swagger';
 import { IsOptional, IsString } from 'class-validator';
 
@@ -15,5 +14,5 @@ export class CreateAreaProjectDto {
   @IsOptional()
   description?: string;
 
-  budget: BudgetEntity;
+  budgetId: number;
 }
