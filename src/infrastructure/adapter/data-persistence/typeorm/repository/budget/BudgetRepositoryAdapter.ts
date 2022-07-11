@@ -1,7 +1,8 @@
 /* eslint-disable import/order */
+import { UpdateBudgetDto } from '@core/domain/budget/dto';
 import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
 import IBudgetRepository from '@core/domain/budget/interface/BudgetInterface';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -17,6 +18,20 @@ export default class BudgetRepositoryAdapter implements IBudgetRepository {
     @InjectRepository(Budget)
     private readonly budgetRepository: Repository<Budget>,
   ) {}
+
+  // public async remove(id: number) {
+  //   const budget = await this.findById(id);
+  //   if (!budget) throw new BadRequestException('Budget not found');
+  //   return this.budgetRepository.remove(budget);
+  // }
+
+  public async update(id: number, dto: UpdateBudgetDto): Promise<Budget> {
+    const budget = await this.findById(id);
+    if (!budget) throw new BadRequestException('Budget not found');
+
+    const editedBudget = Object.assign(budget, dto);
+    return this.budgetRepository.save(editedBudget);
+  }
 
   public async findAll(): Promise<CreateBudgetDto[]> {
     const budgets = await this.budgetRepository.find();
