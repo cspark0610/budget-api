@@ -1,7 +1,12 @@
 /* eslint-disable import/order */
+import { UpdateAreaDto } from '@core/domain/project-area/dto';
 import { AreaEntity } from '@core/domain/project-area/entity/AreaEntity';
 import IProjectAreaRepository from '@core/domain/project-area/interface/ProjectAreaInterface';
-import { Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Raw, Repository } from 'typeorm';
 
@@ -21,6 +26,10 @@ export default class ProjectAreaRepositoryAdapter
   ) {}
 
   public async create(dto: CreateAreaProjectDto): Promise<AreaEntity> {
+    const findArea = await this.findByName(dto.name, dto.budgetId);
+    if (Object.keys(findArea).length !== 0) {
+      throw new BadRequestException(`Area exist`);
+    }
     const newArea = this.projectAreaRepository.create(dto);
     const payload = await this.projectAreaRepository.save(newArea);
     const area = ProjectAreaMapper.toOrmEntityDomain(payload);
@@ -43,5 +52,32 @@ export default class ProjectAreaRepositoryAdapter
     const area = ProjectAreaMapper.toOrmEntityDomain(data);
 
     return area;
+  }
+
+  public async findById(id: number): Promise<CreateAreaProjectDto> {
+    const area = await this.projectAreaRepository.findOne({
+      where: { id },
+    });
+    const newArea = ProjectAreaMapper.toOrmEntityDomain(area);
+    return newArea;
+  }
+
+  public async findByCode(code: string): Promise<boolean> {
+    const data = await this.projectAreaRepository.find({
+      where: { code },
+    });
+    return data.length > 0;
+  }
+
+  public async update(id: number, dto: UpdateAreaDto) {
+    const findArea = await this.findByName(dto.name, dto.budgetId);
+    if (Object.keys(findArea).length) {
+      throw new BadRequestException(`Name already exists in Area`);
+    }
+    const area = await this.findById(id);
+    if (!area) throw new NotFoundException('Area not found');
+
+    const editedArea = Object.assign(area, dto);
+    return this.projectAreaRepository.save(editedArea);
   }
 }
