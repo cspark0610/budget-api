@@ -1,4 +1,5 @@
 /* eslint-disable import/order */
+import { DisciplineEntity } from '@core/domain/project-discipline/entity/DisciplineEntity';
 import IProjectDisciplineRepository from '@core/domain/project-Discipline/interface/ProjectDisciplineInterface';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -8,7 +9,8 @@ import { ProjectDisciplineMapper } from '../../entity/project-Discipline/mapper/
 
 import { ProjectDiscipline } from '../../entity/project-Discipline/ProjectDiscipline.entity';
 
-import { CreateDisciplineProjectDto } from '@core/domain/project-Discipline/dto/ProjectDiscipline.dto';
+import { CreateDisciplineDto } from '@core/domain/project-discipline/dto/CreateDiscipline.dto';
+import { DisciplineDto } from '@core/domain/project-Discipline/dto/Discipline.dto';
 
 @Injectable()
 export default class ProjectDisciplineRepositoryAdapter
@@ -19,10 +21,7 @@ export default class ProjectDisciplineRepositoryAdapter
     private readonly projectDisciplineRepository: Repository<ProjectDiscipline>,
   ) {}
 
-  async findByName(
-    name: string,
-    budget: number,
-  ): Promise<CreateDisciplineProjectDto> {
+  async findByName(name: string, budget: number): Promise<DisciplineEntity> {
     const data = await this.projectDisciplineRepository.findOne({
       where: {
         name: Raw(
@@ -33,19 +32,18 @@ export default class ProjectDisciplineRepositoryAdapter
         ),
         budget: { id: budget },
       },
+      relations: ['areas'],
     });
-    const discipline = ProjectDisciplineMapper.toOrmDomainDto(data);
+    const discipline = ProjectDisciplineMapper.toOrmDomainEntity(data);
 
     return discipline;
   }
 
-  public async create(
-    dto: CreateDisciplineProjectDto,
-  ): Promise<CreateDisciplineProjectDto> {
+  public async create(dto: CreateDisciplineDto): Promise<DisciplineEntity> {
     const newDiscipline = this.projectDisciplineRepository.create(dto);
     const newData = await this.projectDisciplineRepository.save(newDiscipline);
-    const DisciplineDto = ProjectDisciplineMapper.toOrmDomainDto(newData);
+    const disciplineDto = ProjectDisciplineMapper.toOrmDomainEntity(newData);
 
-    return DisciplineDto;
+    return disciplineDto;
   }
 }

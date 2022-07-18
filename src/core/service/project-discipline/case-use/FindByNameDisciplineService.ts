@@ -1,16 +1,19 @@
+import { ProjectDisciplineDITokens } from '@core/domain/project-discipline/di/ProjectDisciplineDITokens';
 import ProjectDisciplineInterface from '@core/domain/project-Discipline/interface/ProjectDisciplineInterface';
+import { Inject } from '@nestjs/common';
 
-import { CreateDisciplineProjectDto } from '@core/domain/project-Discipline/dto/ProjectDiscipline.dto';
+import { CreateDisciplineDto } from '@core/domain/project-discipline/dto/CreateDiscipline.dto';
 
 export default class FindByNameDisciplineService {
   constructor(
+    @Inject(ProjectDisciplineDITokens.CreateDisciplineRepository)
     private readonly projectDisciplineInterface: ProjectDisciplineInterface,
   ) {}
 
   public async findByName(
     name: string,
     budgetId: number,
-  ): Promise<CreateDisciplineProjectDto> {
+  ): Promise<CreateDisciplineDto> {
     const payload = await this.projectDisciplineInterface.findByName(
       name,
       budgetId,

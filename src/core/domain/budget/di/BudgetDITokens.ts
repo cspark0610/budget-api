@@ -4,8 +4,10 @@ export class BudgetDITokens {
   /* public static readonly CreateUserUseCase: unique symbol =
     Symbol('CreateUserUseCase'); */
 
-  // Repositories
+  // Providers
+  public static readonly BudgetService: unique symbol = Symbol('BudgetService');
 
+  // Repositories
   public static readonly BudgetRepository: unique symbol =
     Symbol('BudgetRepository');
 }
