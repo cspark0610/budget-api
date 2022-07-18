@@ -26,10 +26,12 @@ export class ProjectAreaMapper {
 
   public static toOrmEntityDomain(ormProjectArea: ProjectArea): AreaEntity {
     const areaEntity: AreaEntity = new AreaEntity();
-    areaEntity.id = ormProjectArea.id;
-    areaEntity.name = ormProjectArea.name;
-    areaEntity.description = ormProjectArea.description;
-    areaEntity.code = ormProjectArea.code;
+    if (ormProjectArea) {
+      areaEntity.id = ormProjectArea.id;
+      areaEntity.name = ormProjectArea.name;
+      areaEntity.description = ormProjectArea.description;
+      areaEntity.code = ormProjectArea.code;
+    }
 
     return areaEntity;
   }
