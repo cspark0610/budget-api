@@ -14,7 +14,7 @@ import { ProjectAreaMapper } from '../../entity/project-area/mapper/ProjectAreaM
 
 import { ProjectArea } from '../../entity/project-area/ProjectArea.entity';
 
-import { CreateAreaProjectDto } from '@core/domain/project-area/dto/ProjectArea.dto';
+import { CreateAreaDto } from '@core/domain/project-area/dto/CreateArea.dto';
 
 @Injectable()
 export default class ProjectAreaRepositoryAdapter
@@ -25,11 +25,9 @@ export default class ProjectAreaRepositoryAdapter
     private readonly projectAreaRepository: Repository<ProjectArea>,
   ) {}
 
-  public async create(dto: CreateAreaProjectDto): Promise<AreaEntity> {
-    const findArea = await this.findByName(dto.name, dto.budgetId);
-    if (Object.keys(findArea).length !== 0) {
-      throw new BadRequestException(`Area exist`);
-    }
+
+  public async create(dto: CreateAreaDto): Promise<AreaEntity> {
+
     const newArea = this.projectAreaRepository.create(dto);
     const payload = await this.projectAreaRepository.save(newArea);
     const area = ProjectAreaMapper.toOrmEntityDomain(payload);

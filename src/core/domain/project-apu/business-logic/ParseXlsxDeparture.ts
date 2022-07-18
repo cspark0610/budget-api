@@ -72,6 +72,7 @@ export class ParseXlsxDeparture extends XlsxService {
               unitPrice: 0.0,
               areaId: ida,
               disciplineId: idd,
+              departureId: 0,
             });
           }
           break;

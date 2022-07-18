@@ -1,18 +1,13 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional, IsString } from 'class-validator';
+import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
 
-export class CreateAreaProjectDto {
-  @IsString()
-  @ApiProperty({ uniqueItems: true })
+export class ProjectAreaDto {
+  id: number;
+
   name: string;
 
-  @ApiProperty({ uniqueItems: true })
-  @IsString()
   code: string;
 
-  @IsString()
-  @IsOptional()
-  description?: string;
+  description: string;
 
-  budgetId: number;
+  budget: BudgetEntity;
 }

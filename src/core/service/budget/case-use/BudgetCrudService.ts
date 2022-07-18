@@ -1,11 +1,13 @@
 import { BudgetDITokens } from '@core/domain/budget/di/BudgetDITokens';
 import { UpdateBudgetDto } from '@core/domain/budget/dto';
 import BudgetInterface from '@core/domain/budget/interface/BudgetInterface';
-import { Inject } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
+import { BudgetDto } from '@core/domain/budget/dto/Budget.dto';
 import { CreateBudgetDto } from '@core/domain/budget/dto/CreateBudget.dto';
 
-export default class BudgetCrudService {
+@Injectable()
+export class BudgetCrudService {
   constructor(
     @Inject(BudgetDITokens.BudgetRepository)
     private readonly budgetInterface: BudgetInterface,
@@ -23,7 +25,7 @@ export default class BudgetCrudService {
     return budgets;
   }
 
-  public async findById(id: number): Promise<CreateBudgetDto> {
+  public async findById(id: number): Promise<BudgetDto> {
     const budget = await this.budgetInterface.findById(id);
 
     return budget;

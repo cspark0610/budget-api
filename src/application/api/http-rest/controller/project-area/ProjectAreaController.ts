@@ -11,7 +11,7 @@ import {
 } from '@nestjs/common';
 import { ApiBody, ApiTags } from '@nestjs/swagger';
 
-import { CreateAreaProjectDto } from '@core/domain/project-area/dto/ProjectArea.dto';
+import { CreateAreaDto } from '@core/domain/project-area/dto/CreateArea.dto';
 
 @ApiTags('Project - Area')
 @Controller('project/area')
@@ -19,8 +19,8 @@ export class ProjectAreaController {
   constructor(private readonly projectAreaService: CreateProjectAreaService) {}
 
   @Post()
-  @ApiBody({ type: CreateAreaProjectDto })
-  async create(@Body() dto: CreateAreaProjectDto) {
+  @ApiBody({ type: CreateAreaDto })
+  async create(@Body() dto: CreateAreaDto) {
     const data = await this.projectAreaService.create(dto);
     return {
       message: 'Area has been successfully created',

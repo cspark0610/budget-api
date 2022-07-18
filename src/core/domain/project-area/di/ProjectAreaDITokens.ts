@@ -1,12 +1,17 @@
-export class ProjecAreaDITokens {
+
+export class ProjectAreaDITokens {
+
   // Use-cases
 
   /* public static readonly CreateUserUseCase: unique symbol =
       Symbol('CreateUserUseCase'); */
 
-  // Repositories
 
-  public static readonly ProjectAreaRepository: unique symbol = Symbol(
-    'ProjectAreaRepository',
+  // Providers
+
+  // Repositories
+  public static readonly CreateAreaRepository: unique symbol = Symbol(
+    'CreateAreaRepository',
+
   );
 }

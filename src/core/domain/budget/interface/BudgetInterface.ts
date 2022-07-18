@@ -1,5 +1,5 @@
-import { UpdateBudgetDto } from '../dto';
-import { BudgetEntity } from '../entity/BudgetEntity';
+
+import { BudgetDto } from '../dto/Budget.dto';
 
 import { CreateBudgetDto } from '../dto/CreateBudget.dto';
 
@@ -7,7 +7,7 @@ import { CreateBudgetDto } from '../dto/CreateBudget.dto';
 export default interface IBudgetRepository {
   create(dto: CreateBudgetDto): Promise<CreateBudgetDto>;
   findAll(): Promise<CreateBudgetDto[]>;
-  findById(id: number): Promise<BudgetEntity>;
-  update(id: number, dto: UpdateBudgetDto): Promise<UpdateBudgetDto>;
-  // remove(id: number);
+
+  findById(id: number): Promise<BudgetDto>;
+
 }

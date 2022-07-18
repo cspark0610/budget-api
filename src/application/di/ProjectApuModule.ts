@@ -1,3 +1,6 @@
+/* eslint-disable import/order */
+import { ParseXlsxDeparture } from '@core/domain/project-apu/business-logic/ParseXlsxDeparture';
+import { ProjectApuDITokens } from '@core/domain/project-apu/di/ProjectApuDITokens';
 import CreateBatchProjectApuService from '@core/service/project-apu/case-use/CreateBatchProjectApuService';
 import ProjectApuService from '@core/service/project-apu/case-use/CreateProjectApuService';
 /* ======= ENTITIES ======= */
@@ -8,15 +11,24 @@ import {
   ProjectApuSubcontract,
   ProjectApuWorkforce,
 } from '@infrastructure/adapter/data-persistence/typeorm/entity/project-apu/index';
-import { Module } from '@nestjs/common';
+import ProjectApuRepositoryAdapter from '@infrastructure/adapter/data-persistence/typeorm/repository/project-apu/ProjectApuRepositoryAdapter';
+import { Module, Provider } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
-// import { XlsxDepartureService } from '~m/b.project/apu/providers';
 import { ProjectApuController } from '../api/http-rest/controller/project-apu/ProjectApuController';
+import { BudgetModule } from './BudgetModule';
+import { DepartureMasterModule } from './DepartureMasterModule';
+import { ProjectAreaModule } from './ProjectAreaModule';
+import { ProjectDisciplineModule } from './ProjectDisciplineModule';
 
-// import { AreaModule } from '~/modules/b.project/area/area.module';
-// import { DisciplineModule } from '~/modules/b.project/discipline/discipline.module';
-// import { BudgetModule } from '~m/b.project/budget/budget.module';
+import { XlsxService } from '@core/common/providers/xlsx.service';
+
+const dataPersistenceProviders: Provider[] = [
+  {
+    useClass: ProjectApuRepositoryAdapter,
+    provide: ProjectApuDITokens.CreateBatchProjectApuRepository,
+  },
+];
 
 @Module({
   imports: [
@@ -27,11 +39,18 @@ import { ProjectApuController } from '../api/http-rest/controller/project-apu/Pr
       ProjectApuSubcontract,
       ProjectApuWorkforce,
     ]),
-    // AreaModule,
-    // DisciplineModule,
-    // BudgetModule,
+    DepartureMasterModule,
+    ProjectAreaModule,
+    ProjectDisciplineModule,
+    BudgetModule,
   ],
   controllers: [ProjectApuController],
-  providers: [ProjectApuService, CreateBatchProjectApuService], // XlsxDepartureService
+  providers: [
+    ProjectApuService,
+    CreateBatchProjectApuService,
+    ParseXlsxDeparture,
+    XlsxService,
+    ...dataPersistenceProviders,
+  ],
 })
 export class ProjectApuModule {}

@@ -8,4 +8,5 @@ export type ApuEntityPayload = {
   unitPrice: number;
   areaId: number;
   disciplineId: number;
+  departureId: number;
 };

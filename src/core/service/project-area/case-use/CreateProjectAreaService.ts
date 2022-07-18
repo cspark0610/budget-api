@@ -1,19 +1,23 @@
+import { BudgetEntity } from '@core/domain/budget/entity/BudgetEntity';
 import { DataImportEntity } from '@core/domain/project-apu/entity/type/DataImportEntity';
-import { ProjecAreaDITokens } from '@core/domain/project-area/di/ProjectAreaDITokens';
-import { UpdateAreaDto } from '@core/domain/project-area/dto';
+
+import { ProjectAreaDITokens } from '@core/domain/project-area/di/ProjectAreaDITokens';
+
 import { AreaEntity } from '@core/domain/project-area/entity/AreaEntity';
 import ProjectAreaInterface from '@core/domain/project-area/interface/ProjectAreaInterface';
 import { Inject } from '@nestjs/common';
 
-import { CreateAreaProjectDto } from '@core/domain/project-area/dto/ProjectArea.dto';
+import { CreateAreaDto } from '@core/domain/project-area/dto/CreateArea.dto';
 
 export default class CreateProjectAreaService {
   constructor(
-    @Inject(ProjecAreaDITokens.ProjectAreaRepository)
+
+    @Inject(ProjectAreaDITokens.CreateAreaRepository)
+
     private readonly projectAreaInterface: ProjectAreaInterface,
   ) {}
 
-  public async create(dto: CreateAreaProjectDto): Promise<AreaEntity> {
+  public async create(dto: CreateAreaDto): Promise<AreaEntity> {
     const projectArea = await this.projectAreaInterface.create(dto);
 
     return projectArea;
@@ -21,13 +25,13 @@ export default class CreateProjectAreaService {
 
   async creationBatchArea(
     data: DataImportEntity,
-    budgetId: number,
+    budget: BudgetEntity,
   ): Promise<AreaEntity[]> {
     const areas = await Promise.all(
       data.areas.map((el) =>
         this.create({
           ...el,
-          budgetId,
+          budget,
         }),
       ),
     );

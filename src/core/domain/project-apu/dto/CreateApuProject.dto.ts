@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { IsEnum, IsNotEmpty, IsNumber, IsOptional } from 'class-validator';
 
 import { Status } from '../../../common/helpers/enumStatus';

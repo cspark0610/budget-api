@@ -2,19 +2,18 @@ import {
   CreateBudgetDto,
   UpdateBudgetDto,
 } from '@core/domain/budget/dto/index';
-import BudgetCrudService from '@core/service/budget/case-use/BudgetCrudService';
+import { BudgetCrudService } from '@core/service/budget/case-use/BudgetCrudService';
 import {
   Body,
   Controller,
   Get,
   Param,
   ParseIntPipe,
-  Patch,
   Post,
 } from '@nestjs/common';
 import { ApiOkResponse, ApiTags } from '@nestjs/swagger';
 
-@ApiTags('Budget - Project')
+@ApiTags('Project - Budget')
 @Controller('budget/project')
 export class ProjectBudgetController {
   constructor(private readonly budgetService: BudgetCrudService) {}
