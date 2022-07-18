@@ -77,5 +77,10 @@
   },
   "lint-staged": {
     "*.ts": "eslint"
+  },
+  "config": {
+    "commitizen": {
+      "path": "@digitalroute/cz-conventional-changelog-for-jira"
+    }
   }
 }

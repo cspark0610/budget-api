@@ -1,6 +1,7 @@
 /* eslint-disable import/order */
+
 import IBudgetRepository from '@core/domain/budget/interface/BudgetInterface';
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
@@ -17,6 +18,7 @@ export default class BudgetRepositoryAdapter implements IBudgetRepository {
     @InjectRepository(Budget)
     private readonly budgetRepository: Repository<Budget>,
   ) {}
+
 
   public async findAll(): Promise<BudgetDto[]> {
     const budget = await this.budgetRepository.find();

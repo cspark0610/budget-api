@@ -1,4 +1,5 @@
 import { BudgetDITokens } from '@core/domain/budget/di/BudgetDITokens';
+import { UpdateBudgetDto } from '@core/domain/budget/dto';
 import BudgetInterface from '@core/domain/budget/interface/BudgetInterface';
 import { Inject, Injectable } from '@nestjs/common';
 
@@ -29,4 +30,19 @@ export class BudgetCrudService {
 
     return budget;
   }
+
+  public async update(
+    id: number,
+    dto: UpdateBudgetDto,
+  ): Promise<UpdateBudgetDto> {
+    const budget = await this.budgetInterface.update(id, dto);
+
+    return budget;
+  }
+
+  // public async remove(id: number) {
+  //   const budget = await this.budgetInterface.remove(id);
+  //   if (!budget) throw new BadRequestException('Budget not found');
+  //   return budget;
+  // }
 }

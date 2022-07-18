@@ -48,7 +48,7 @@ export class ProjectBudgetController {
     };
   }
 
-  /*  @Patch(':id')
+  @Patch(':id')
   async update(
     @Param('id', ParseIntPipe) id: number,
     @Body() dto: UpdateBudgetDto,
@@ -61,13 +61,13 @@ export class ProjectBudgetController {
     };
   }
 
-  @Delete(':id')
-  async remove(@Param('id', ParseIntPipe) id: number) {
-    const data = await this.budgetService.remove(id);
+  // @Delete(':id')
+  // async remove(@Param('id', ParseIntPipe) id: number) {
+  //   const data = await this.budgetService.remove(id);
 
-    return {
-      message: 'Budget removed',
-      data,
-    };
-  } */
+  //   return {
+  //     message: 'Budget removed',
+  //     data,
+  //   };
+  // }
 }
